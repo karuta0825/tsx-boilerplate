@@ -8,7 +8,8 @@
     "noImplicitReturns": true,
     "module": "commonjs",
     "target": "es5",
-    "jsx": "react"
+    "jsx": "react",
+    "esModuleInterop": true,
   },
-  "include": ["./src/**/*"]
+    "include": ["./src/**/*", "./__test__/setup.ts"]
 }
