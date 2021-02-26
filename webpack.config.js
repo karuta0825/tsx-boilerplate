@@ -1,37 +1,38 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: "./src/main.tsx",
+  entry: './src/main.tsx',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "app.js"
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js',
   },
   devServer: {
-    open: true
+    open: true,
+    contentBase: 'dist',
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html"
-    })
+      template: 'src/index.html',
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.tsx$/,
         exclude: /node_modules/,
-        loader: "awesome-typescript-loader",
+        loader: 'ts-loader',
         options: {
-          configFile: path.resolve(__dirname, "tsconfig.json")
-        }
-      }
-    ]
+          configFile: path.resolve(__dirname, 'tsconfig.json'),
+        },
+      },
+    ],
   },
   // .jsもないとwebpack-dev-serverが失敗する
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  }
+    extensions: ['.ts', '.tsx', '.js'],
+  },
 };
