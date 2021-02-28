@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { render as rtlRender } from '@testing-library/react';
-import { createStore, Store } from 'redux';
+import { Store } from 'redux';
+import { configureStore } from '../src/store';
 import { Provider } from 'react-redux';
-import { counterReducer } from '../src/reducer';
 
 function render(
   ui: React.ReactElement,
   {
     initialState,
-    store = createStore(counterReducer, initialState),
+    store = configureStore(initialState),
     ...renderOptions
   }: {
     initialState?: any;
