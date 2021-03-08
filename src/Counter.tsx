@@ -1,12 +1,30 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
+import * as request from './request';
+
+async function test() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(1);
+    }, 2000);
+  });
+}
+
+const fetchCreator = () => {
+  return async (dispatch: Dispatch) => {
+    const r = await request.get('https://api.github.com/users/karuta0825/repos');
+    console.log(r);
+    dispatch({ type: 'FETCHED', payload: r });
+  };
+};
 
 export const Counter = () => {
   const { value, fetchCounter } = useSelector((store: any) => store);
   const dispatch = useDispatch();
 
   const fetch = React.useCallback(() => {
-    dispatch({ type: 'FETCH' });
+    dispatch(fetchCreator());
   }, [fetchCounter]);
 
   return (

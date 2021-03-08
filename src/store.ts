@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import thunk from 'redux-thunk';
 import { counterReducer } from './reducer';
-import rootSaga from './saga';
 
 // いや〜そういうことか。はまったわ。危険危険。
 // const sagaMiddleware = createSagaMiddleware();
@@ -9,8 +8,6 @@ import rootSaga from './saga';
 // export { store };
 
 export function configureStore(initState?: any) {
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(counterReducer, initState, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(rootSaga);
+  const store = createStore(counterReducer, initState, applyMiddleware(thunk));
   return store;
 }
