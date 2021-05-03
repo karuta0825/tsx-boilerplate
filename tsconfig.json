@@ -10,6 +10,7 @@
     "target": "es5",
     "jsx": "react",
     "esModuleInterop": true,
+    "downlevelIteration": true
   },
     "include": ["./src/**/*", "./__test__/setup.ts"]
 }
